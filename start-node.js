@@ -9,7 +9,7 @@ exports.start = function(jsgiApp, socketApp){
 			require("jsgi-node").Listener(jsgiApp)
 		);
 	var port = settings.port || 8080;
-	var nodes = multiNode.listen({port: port, nodes: settings.processes || 1}, http);
+	var nodes = multiNode.listen({port: port, nodes: settings.processes || 1, host: settings.host}, http);
 	require("jsgi-node/ws-jsgi")(ws.createServer({
 		server: http
 	}), function(request){
