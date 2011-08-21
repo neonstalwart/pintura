@@ -32,7 +32,7 @@ var parseMultipart = typeof process == "undefined" ?
 			return deferred.promise;
 		};
 	})(
-	require("node-formidable/lib/formidable/incoming_form").IncomingForm, 
+	require("formidable"), 
 	require("jsgi-node/jsgi/node").Node);
 	
 

@@ -61,16 +61,17 @@
     "lib": "."
   },
   "dependencies":{
-    "tunguska": ">0.2.4",
-    "rql": ">0.2.2",
+    "tunguska": "https://nodeload.github.com/neonstalwart/tunguska/tarball/test",
+    "rql": "https://nodeload.github.com/neonstalwart/rql/tarball/test",
     "websocket-server": ">=1.4.01",
-    "perstore": ">0.2.4",
-    "promised-io": ">0.2.3",
-    "commonjs-utils": ">0.2.2",
-    "multi-node": ">0.2.3",
-    "jsgi-node": ">0.2.5"
+    "perstore": "https://nodeload.github.com/neonstalwart/perstore/tarball/test",
+    "promised-io": "https://nodeload.github.com/neonstalwart/promised-io/tarball/test",
+    "commonjs-utils": "https://nodeload.github.com/neonstalwart/commonjs-utils/tarball/test",
+    "multi-node": "https://nodeload.github.com/neonstalwart/multi-node/tarball/test",
+    "jsgi-node": "https://nodeload.github.com/neonstalwart/jsgi-node/tarball/test",
+    "formidable": ">=1.0.2
   },
   "devDependencies": {
-    "patr": ">0.2.6"
+    "patr": "https://nodeload.github.com/neonstalwart/patr/tarball/test"
   }
 }
