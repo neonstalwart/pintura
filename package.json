@@ -69,7 +69,7 @@
     "commonjs-utils": "https://nodeload.github.com/neonstalwart/commonjs-utils/tarball/test",
     "multi-node": "https://nodeload.github.com/neonstalwart/multi-node/tarball/test",
     "jsgi-node": "https://nodeload.github.com/neonstalwart/jsgi-node/tarball/test",
-    "formidable": ">=1.0.2
+    "formidable": ">=1.0.2"
   },
   "devDependencies": {
     "patr": "https://nodeload.github.com/neonstalwart/patr/tarball/test"
