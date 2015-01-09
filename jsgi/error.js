@@ -52,6 +52,9 @@ exports = module.exports = function(nextApp){
 				else if(e.code == 3){
 					status = 412;
 				}
+				else if(e.code == 4){
+					status = 409;
+				}
 			}else if(e instanceof TypeError){
 				status = 403;
 			}else if(e instanceof RangeError){
