@@ -61,7 +61,6 @@ module.exports = Media({
 							response.pathInfo = pathInfo;
 							response.id = message.id;
 							if(response.body && typeof response.body.observe === "function"){
-								clientConnection.expectMore = true;
 								response.body.observe(function(message){
 									message.from = pathInfo;
 									message.id = request.id;
@@ -71,15 +70,18 @@ module.exports = Media({
 						});
 					});
 					return when(all(responses), function(responses){
+						var body = responses.filter(function(response){
+							//ignore the observable messages since they indicate that we should keep the connection open and wait for the real message
+							return !(response.body && typeof response.body.observe === "function");
+						});
 						return {
-							status: clientConnection.expectMore ? 202: 200,
+							// when there are no responses or if the body contains some observable responses, the client
+							// should expect that there is more to come
+							status: !responses.length || body.length !== responses.length ? 202: 200,
 							headers: {},
 							messages: true,
-							body: responses.filter(function(response){
-								//ignore the observable messages since they indicate that we should keep the connection open and wait for the real message
-								return !(response.body && typeof response.body.observe === "function");
-							})
-						}
+							body: body
+						};
 					});
 				});
 			}
