@@ -46,6 +46,13 @@ module.exports = Media({
 						}
 						else {
 							message.__proto__ = request;
+							var headers = message.headers;
+							if (headers) {
+								message.headers = Object.create(request.headers);
+								for (var h in headers) {
+									message.headers[h] = headers[h];
+								}
+							}
 							if(!("to" in message)){
 								message.to = "";
 							}
