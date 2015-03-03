@@ -23,6 +23,8 @@ module.exports = Media({
 			}
 			return JSONExt.parse(body);
 		});
+		// release the buffer backing request.body
+		request.body = null;
 		return {
 			callNextApp: function(nextApp){
 				return when(body, function(body){
@@ -56,15 +58,17 @@ module.exports = Media({
 							response = nextApp(message);
 						}
 
+						var id = message.id;
+						message = null;
 						responses.push(response);
 						when(response, function(response){
 							response.pathInfo = pathInfo;
-							response.id = message.id;
+							response.id = id;
 							if(response.body && typeof response.body.observe === "function"){
 								clientConnection.expectMore = true;
 								response.body.observe(function(message){
 									message.from = pathInfo;
-									message.id = request.id;
+									message.id = id;
 									clientConnection.send(message);
 								});
 							}
