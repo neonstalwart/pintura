@@ -98,7 +98,7 @@ module.exports = Media({
 		};
 	},
 	serialize: function(body, parameters, request, response){
-		return serializeJson(Broadcaster(function(){
+		var connectionResponse = Broadcaster(function(){
 			var clientConnection = getClientConnection(request);
 			if(response.messages){
 				body.forEach(function(value){
@@ -114,6 +114,10 @@ module.exports = Media({
 			}else{
 				clientConnection.push(response);
 			}
-		})(request).body, parameters, request);
+		})(request);
+
+		response.onClose = connectionResponse.onClose;
+
+		return serializeJson(connectionResponse.body, parameters, request);
 	}
 });
