@@ -72,11 +72,13 @@ module.exports = Media({
 							response.pathInfo = pathInfo;
 							response.id = id;
 							if(response.body && typeof response.body.observe === "function"){
-								response.body.observe(function(message){
+								var subscription = response.body;
+								subscription.observe(function(message){
 									message.from = pathInfo;
 									message.id = id;
 									clientConnection.send(message);
 								});
+								clientConnection.observe("close", subscription.unsubscribe);
 							}
 						});
 					});
