@@ -78,7 +78,10 @@ module.exports = Media({
 									message.id = id;
 									clientConnection.send(message);
 								});
-								clientConnection.observe("close", subscription.unsubscribe);
+								clientConnection.observe("close", function () {
+									subscription.unsubscribe();
+									subscription = null;
+								});
 							}
 						});
 					});
